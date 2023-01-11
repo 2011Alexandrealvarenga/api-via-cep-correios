@@ -1,6 +1,14 @@
 <?php 
+$address = (object)[
+    'cep'               => '',
+    'logradouro'        => '',
+    'bairro'            => '',
+    'localidade'        => '',
+    'uf'                => ''
+];
 
-$cep = '01001000';
-$url = "https://viacep.com.br/ws/$cep/json/";
-$address = file_get_contents($url);
-var_dump($address);
+if(isset($_POST['cep'])){
+    $cep = $_POST['cep'];
+    $url = "https://viacep.com.br/ws/{$cep}/json/";
+    $address = json_decode(file_get_contents($url));
+}
